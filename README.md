@@ -34,6 +34,8 @@ Borrow = A’B
 Figure -02 HALF Subtractor
 
 **Truthtable**
+![Truth table](https://github.com/user-attachments/assets/218d2128-7259-44ee-b64b-78d5dda393e2)
+
 
 **Procedure**
 
@@ -49,13 +51,50 @@ Figure -02 HALF Subtractor
 
 
 **Program:**
+```
+1)HALF ADDER
+
+module ws(S, Cout, X, Y, Cin);
+ input [3:0] X, Y;
+ input Cin;
+ output [3:0] S;
+ output Cout;
+ wire w1, w2, w3;
+ // instantiating 4 1-bit full adders in Verilog
+ fulladder u1(S[0], w1, X[0], Y[0], Cin);
+ fulladder u2(S[1], w2, X[1], Y[1], w1);
+ fulladder u3(S[2], w3, X[2], Y[2], w2);
+ fulladder u4(S[3], Cout,  X[3], Y[3], w3);
+endmodule
+```
+```
+2)HALF SUBRACTER
+
+module fulladder(X, Y, Ci, S, Co);
+  input X, Y, Ci;
+  output S, Co;
+  wire w1,w2,w3;
+  //Structural code for one bit full adder
+  xor G1(w1, X, Y);
+  xor G2(S, w1, Ci);
+  and G3(w2, w1, Ci);
+  and G4(w3, X, Y);
+  or G5(Co, w2, w3);
+endmodule
+```
 
 /* Program to design a half adder and full adder circuit and verify its truth table in quartus using Verilog programming.
 
-Developed by: RegisterNumber:*/
+Developed by:Monika.A 
+RegisterNumber:212224240094
 
 **RTL Schematic**
+![Screenshot 2025-04-22 113834](https://github.com/user-attachments/assets/b44a0838-52dc-4030-a07d-1c2a6244808b)
+
 
 **Output/TIMING Waveform**
+![Screenshot 2025-04-21 210309](https://github.com/user-attachments/assets/b47e1936-e9c0-4512-a54c-c116c980a4cd)
+
 
 **Result:**
+Thus the Half adder and Half subtractor are studied and truth table is verified.
